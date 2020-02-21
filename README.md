@@ -23,7 +23,7 @@ Created in 2018. Need a lot of improvements and adding more resources support.
 
 ### Example
 
-    import "github.com/feelinc/go_ebay_sdk/trading"
+    import "github.com/feelinc/ebaysdk/trading"
     
     api := trading.NewConnection(trading.SetDevID("the-dev-id"),
 	    trading.SetAppID("the-app-id"),
