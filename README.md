@@ -10,16 +10,16 @@ Created in 2018. Need a lot of improvements and adding more resources support.
 # Features!
 
   - Shopping
-  -- GetMultipleItems
-  -- GetSingleItem
+    - GetMultipleItems
+    - GetSingleItem
   - Trading
-  -- AddMemberMessageAAQToPartner
-  -- AddMemberMessageRTQ
-  -- CompleteSale
-  -- GetFeedback
-  -- GetItem
-  -- GetOrderTransactions
-  -- GetUser
+    - AddMemberMessageAAQToPartner
+    - AddMemberMessageRTQ
+    - CompleteSale
+    - GetFeedback
+    - GetItem
+    - GetOrderTransactions
+    - GetUser
 
 ### Example
 
