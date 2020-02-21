@@ -2,7 +2,7 @@
 =================
 unofficial eBay Go SDK
 =================
-Need a lot of improvements and adding more resources support.
+Created in 2018. Need a lot of improvements and adding more resources support.
 
 ### INSTALLATION
 ```go get github.com/feelinc/go_ebay_sdk```
@@ -10,16 +10,16 @@ Need a lot of improvements and adding more resources support.
 # Features!
 
   - Shopping
-  --- GetMultipleItems
-  --- GetSingleItem
+  -- GetMultipleItems
+  -- GetSingleItem
   - Trading
-  --- AddMemberMessageAAQToPartner
-  --- AddMemberMessageRTQ
-  --- CompleteSale
-  --- GetFeedback
-  --- GetItem
-  --- GetOrderTransactions
-  --- GetUser
+  -- AddMemberMessageAAQToPartner
+  -- AddMemberMessageRTQ
+  -- CompleteSale
+  -- GetFeedback
+  -- GetItem
+  -- GetOrderTransactions
+  -- GetUser
 
 ### Example
 
