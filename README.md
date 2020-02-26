@@ -10,20 +10,20 @@ Created in 2018. Need a lot of improvements and adding more resources support.
 # Features!
 
   - Shopping
-  -- GetMultipleItems
-  -- GetSingleItem
+    - GetMultipleItems
+    - GetSingleItem
   - Trading
-  -- AddMemberMessageAAQToPartner
-  -- AddMemberMessageRTQ
-  -- CompleteSale
-  -- GetFeedback
-  -- GetItem
-  -- GetOrderTransactions
-  -- GetUser
+    - AddMemberMessageAAQToPartner
+    - AddMemberMessageRTQ
+    - CompleteSale
+    - GetFeedback
+    - GetItem
+    - GetOrderTransactions
+    - GetUser
 
 ### Example
 
-    import "github.com/feelinc/go_ebay_sdk/trading"
+    import "github.com/feelinc/ebaysdk/trading"
     
     api := trading.NewConnection(trading.SetDevID("the-dev-id"),
 	    trading.SetAppID("the-app-id"),
