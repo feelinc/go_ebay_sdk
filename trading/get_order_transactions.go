@@ -63,7 +63,7 @@ type GetOrderTransactionsResponse struct {
 
 // ResponseErrors return response errors
 func (r GetOrderTransactionsResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewGetOrderTransactions return new GetOrderTransactions request

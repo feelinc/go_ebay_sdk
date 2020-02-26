@@ -56,7 +56,7 @@ type AddMemberMessageAAQToPartnerResponse struct {
 
 // ResponseErrors return response errors
 func (r AddMemberMessageAAQToPartnerResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewAddMemberMessageAAQToPartner return new AddMemberMessageAAQToPartner request

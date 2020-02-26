@@ -100,7 +100,7 @@ type CompleteSaleResponse struct {
 
 // ResponseErrors return response errors
 func (r CompleteSaleResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewCompleteSale return new AddMemberMessageAAQToPartner request

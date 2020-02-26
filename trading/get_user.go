@@ -50,7 +50,7 @@ type GetUserResponse struct {
 
 // ResponseErrors return response errors
 func (r GetUserResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewGetUser return new GetUser request

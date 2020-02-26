@@ -25,6 +25,7 @@ func (c *Trading) BuildRequestHeader() map[string]string {
 		"X-EBAY-API-CERT-NAME":           c.Config.CertID,
 		"X-EBAY-API-SITEID":              fmt.Sprintf("%d", c.Config.SiteID),
 		"X-EBAY-API-CALL-NAME":           c.Request.Name(),
+		"X-EBAY-API-DETAIL-LEVEL":        "0",
 		"Content-Type":                   "text/xml",
 	}
 
@@ -41,7 +42,7 @@ func (c *Trading) BuildRequestHeader() map[string]string {
 
 // BuildRequestData build the request data
 func (c *Trading) BuildRequestData() string {
-	xml := "<?xml version='1.0' encoding='utf-8'?>"
+	xml := "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
 	xml = xml + fmt.Sprintf("<%sRequest xmlns=\"urn:ebay:apis:eBLBaseComponents\">", c.Request.Name())
 	xml = xml + "<RequesterCredentials>"
 	xml = xml + fmt.Sprintf("<eBayAuthToken>%s</eBayAuthToken>", c.Config.Token)

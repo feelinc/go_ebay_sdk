@@ -55,7 +55,7 @@ type GetMultipleItemsResponse struct {
 
 // ResponseErrors return response errors
 func (r GetMultipleItemsResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewGetMultipleItems return new GetMultipleItems request

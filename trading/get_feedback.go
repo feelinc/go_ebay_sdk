@@ -45,7 +45,7 @@ type GetFeedbackResponse struct {
 
 // ResponseErrors return response errors
 func (r GetFeedbackResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewGetFeedback return new GetFeedback request

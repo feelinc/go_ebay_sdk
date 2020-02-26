@@ -24,6 +24,7 @@ func (c *Shopping) BuildRequestHeader() map[string]string {
 		"X-EBAY-API-SITE-ID":          fmt.Sprintf("%d", c.Config.SiteID),
 		"X-EBAY-API-CALL-NAME":        c.Request.Name(),
 		"X-EBAY-API-REQUEST-ENCODING": "XML",
+		"X-EBAY-API-DETAIL-LEVEL":     "0",
 		"Content-Type":                "text/xml",
 	}
 
@@ -40,7 +41,7 @@ func (c *Shopping) BuildRequestHeader() map[string]string {
 
 // BuildRequestData build the request data
 func (c *Shopping) BuildRequestData() string {
-	xml := "<?xml version='1.0' encoding='utf-8'?>"
+	xml := "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
 	xml = xml + fmt.Sprintf("<%sRequest xmlns=\"urn:ebay:apis:eBLBaseComponents\">", c.Request.Name())
 	xml = xml + c.Request.BodyXML()
 	xml = xml + fmt.Sprintf("</%sRequest>", c.Request.Name())

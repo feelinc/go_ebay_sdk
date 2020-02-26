@@ -12,18 +12,18 @@ func (err Errors) Error() string {
 	var errs []string
 
 	for _, e := range err {
-		errs = append(errs, fmt.Sprintf("%#v", e))
+		errs = append(errs, fmt.Sprintf("%#v", e.Error()))
 	}
 
 	return strings.Join(errs, ", ")
 }
 
-// HttpError data
-type HttpError struct {
+// HTTPError data
+type HTTPError struct {
 	statusCode int
 	body       []byte
 }
 
-func (err HttpError) Error() string {
+func (err HTTPError) Error() string {
 	return fmt.Sprintf("%d - %s", err.statusCode, err.body)
 }

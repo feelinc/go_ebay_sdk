@@ -58,7 +58,7 @@ type GetSingleItemResponse struct {
 
 // ResponseErrors return response errors
 func (r GetSingleItemResponse) ResponseErrors() ebaysdk.Errors {
-	return r.EbayResponse.Errors
+	return r.EbayResponse.Error.Items
 }
 
 // NewGetSingleItem return new GetSingleItem request

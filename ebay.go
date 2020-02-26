@@ -2,10 +2,14 @@ package ebaysdk
 
 import (
 	"bytes"
+	"encoding/base64"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/http/httputil"
+	"regexp"
 	"runtime"
 	"time"
 
@@ -84,7 +88,6 @@ type Connection interface {
 // BuildRequest build the request
 func BuildRequest(config *Config, headers map[string]string, body string,
 	request Request) (Response, error) {
-
 	uri := buildRequestURI(config.HTTPS, config.Domain, config.URI)
 
 	req, err := http.NewRequest("POST", uri, bytes.NewBuffer([]byte(body)))
@@ -102,6 +105,15 @@ func BuildRequest(config *Config, headers map[string]string, body string,
 	req.Header.Add("User-Agent", userAgent)
 	req.Header.Add("X-EBAY-SDK-REQUEST-ID", reqID.String())
 
+	if config.Debug {
+		requestDump, err := httputil.DumpRequest(req, true)
+		if err != nil {
+			log.Println(err)
+		}
+
+		log.Println(string(requestDump))
+	}
+
 	client := &http.Client{
 		Timeout: time.Duration(time.Duration(config.Timeout) * time.Second),
 	}
@@ -111,7 +123,7 @@ func BuildRequest(config *Config, headers map[string]string, body string,
 	}
 
 	if resp.StatusCode != 200 {
-		httpErr := HttpError{
+		httpErr := HTTPError{
 			statusCode: resp.StatusCode,
 		}
 		httpErr.body, _ = ioutil.ReadAll(resp.Body)
@@ -121,8 +133,23 @@ func BuildRequest(config *Config, headers map[string]string, body string,
 
 	bodyContent, _ := ioutil.ReadAll(resp.Body)
 
-	if config.Debug {
-		log.Println(string(bodyContent[:]))
+	// sometimes eBay return unexpected response, which is in binary
+	// so we need to decode it first to get the real response
+	re := regexp.MustCompile(`<ns:binary.*?>(.*)</ns:binary>`)
+	rematch := re.FindSubmatch(bodyContent)
+	if len(rematch) >= 1 {
+		bodyContent, err := base64.StdEncoding.DecodeString(string(rematch[1]))
+		if err != nil {
+			log.Println("Error decoding binary base64: ", string(rematch[1]))
+		}
+
+		if config.Debug {
+			log.Println(string(bodyContent))
+		}
+	} else {
+		if config.Debug {
+			log.Println(string(bodyContent[:]))
+		}
 	}
 
 	response, err := request.ParseResponse(bodyContent)
@@ -130,8 +157,12 @@ func BuildRequest(config *Config, headers map[string]string, body string,
 		return EbayResponse{}, err
 	}
 
-	if response.Failure() {
-		return response, Errors(response.ResponseErrors())
+	if response.Failure() || response.Acknowledge() == "" {
+		errs := response.ResponseErrors()
+		if len(errs) > 0 {
+			return response, errs[0]
+		}
+		return response, errors.New(response.Acknowledge())
 	}
 
 	return response, nil
