@@ -43,7 +43,7 @@ Created in 2018. Need a lot of improvements and adding more resources support.
 ### Todos
  - Unit and Integration test
  - Improve existing codes
- - Implement remaining Telesign resources
+ - Implement remaining eBay API resources
 
 ### FOUND BUGS
 Please open a issue (please check if similar issue exist reported here, just comment). We will consider to fix or close without fixing it.
